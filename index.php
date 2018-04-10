@@ -5,7 +5,7 @@ require_once('app/views/includes/header.php');
 
 if(!isset($_GET['page']))
 {
-	header('Location: ?page=accueil');
+	header('Location: ?page=home');
 }
 
 $page = $_GET['page'];
