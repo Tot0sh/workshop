@@ -8,6 +8,12 @@
 	</head>
 	<body>
 		<header>
-			HEADER
-			<i class="fas fa-adjust"></i>
+			<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="?page=accueil">
+					<img src="images/logo.png"  class="d-inline-block align-top"/>
+					Workshop
+				</a>
+			</nav>
 		</header>
+
+		<div class="container">
