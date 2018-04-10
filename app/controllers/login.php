@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type:'post',
-			url:'.php',
+			url:'../../../Workshop/app/models/ajax/getUser.php',
 			data: pwd,
 
 			sucess:function(response){
