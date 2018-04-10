@@ -1,0 +1,20 @@
+<svg width="740.5" height="640.5" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style>.cls-1{fill:#935a9e}.cls-2{fill:#e58140}.cls-3{fill:#4b4b99}.cls-4{fill:#f9d055}.cls-5{fill:#dc4858}.cls-6{fill:#8fc056}.cls-7{fill:#38b8d7}.cls-8{fill:#fff}</style>
+ </defs>
+ <title>logo</title>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="66.5" width="76.5" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m219.25,319.09l23.35,0l0,23.35l-23.35,0l0,-23.35z" transform="rotate(-45 -231.84100341796903,429.29199218749994) " class="cls-1"/>
+  <path id="svg_2" d="m25.72,15.88l16.51,16.52l16.47,-16.48l-32.98,-0.04z" class="cls-2"/>
+  <path id="svg_3" d="m0,64.89l16.51,-16.51l-16.47,-16.48l-0.04,32.99z" class="cls-3"/>
+  <path id="svg_4" d="m25.72,15.88l15.88,-15.88l33.03,0l-15.93,15.92l-32.98,-0.04z" class="cls-4"/>
+  <path id="svg_5" d="m9.21,32.4l0,-32.4l32.39,0l-32.39,32.4z" class="cls-5"/>
+  <path id="svg_6" d="m74.63,0l0,64.83l-32.41,-32.42l32.41,-32.41z" class="cls-6"/>
+  <path id="svg_7" d="m9.8,64.83l64.83,0l-32.41,-32.42l-32.42,32.42z" class="cls-7"/>
+ </g>
+</svg>
