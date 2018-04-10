@@ -11,7 +11,7 @@
 	<body>
 		<header class="mb-5">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="?page=accueil">
+				<a class="navbar-brand" href="?page=home">
 					<img src="images/logo-mini.svg" height="30" width="30" class="d-inline-block align-top mr-2"/>
 					<span class="font-weight-bold">WORKSHOP</span>
 				</a>
