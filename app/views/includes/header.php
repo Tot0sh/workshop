@@ -4,14 +4,16 @@
 		<meta charset="UTF-8"/>
 		<title>Workshop</title>
 		<link rel="stylesheet" href="css/style.css"/>
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/vendors/jquery.js"></script>
+		<script type="text/javascript" src="js/vendors/bootstrap.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
 	</head>
 	<body>
 		<header class="mb-5">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="?page=accueil">
 					<img src="images/logo-mini.svg" height="30" width="30" class="d-inline-block align-top mr-2"/>
-					Workshop
+					<span class="font-weight-bold">WORKSHOP</span>
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -19,22 +21,25 @@
 				<div class="collapse navbar-collapse" id="navbarText">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link <?php if($_GET['page'] == 'accueil') echo ' disabled'; ?>" href="?page=accueil">Accueil <span class="sr-only">(current)</span></a>
+							<a class="nav-link" href="?page=home">Accueil</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="?page=login">Login</a>
 						</li>
 					</ul>
 
-					<div class="btn-group mr-3" role="group" aria-label="Basic example">
-						<button type="button" class="btn">
+					<div class="btn-group mr-3" role="group">
+						<a href="?page=profil" class="btn btn-outline-primary" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Profil">
 							<i class="fas fa-user"></i>
-						</button>
-						<button type="button" class="btn">
-							<i class="fas fa-cog fa-lg"></i>
-						</button>
+						</a>
+						<a href="?page=settings" class="btn btn-outline-primary" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Option">
+							<i class="fas fa-cog"></i>
+						</a>
 					</div>
 
-					<button class="btn btn-outline-danger">
-						<i class="fas fa-sign-out-alt fa-lg"></i>
-					</button>
+					<a href="?page=login" class="btn btn-outline-danger" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Déconnexion" >
+						<i class="fas fa-sign-out-alt"></i>
+					</a>
 				</div>
 			</nav>
 		</header>
