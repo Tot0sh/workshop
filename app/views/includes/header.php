@@ -10,6 +10,4 @@
 		<header>
 			HEADER
 			<i class="fas fa-adjust"></i>
-
-
 		</header>
