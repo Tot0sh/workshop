@@ -3,15 +3,18 @@ session_start();
 
 require_once('app/views/includes/header.php');
 
-if(!isset($_SESSION['profil']) || !empty($_SESSION['profil']))
+if(!isset($_GET['page']))
 {
-	$_GET['page'] = 'login';
+	header('Location: ?page=accueil');
 }
-else if (!empty($_GET['page']) && is_file('app/controllers/'.$_GET['page'].'.php'))
-{
-	$_GET['page'] = 'accueil';
-}
-else $_GET['page'] = '404';
 
-require_once('app/controllers/'.$_GET['page'].'.php');
+$page = $_GET['page'];
+
+if (is_file('app/controllers/'.$page.'.php'))
+{
+	$page = $_GET['page'];
+}
+else $page = '404';
+	
+require_once('app/controllers/'.$page.'.php');
 require_once('app/views/includes/footer.php');
