@@ -2,10 +2,6 @@
 
 if(isset($_SESSION["profil"]) AND !empty($_SESSION["profil"])) header("Location: index.php?page=home");
 
-require_once('setup.php');
-require_once('app/models/db.class.php');
-require_once('app/models/user.class.php');
-
 if(isset($_POST["submit"])) {
 	if(isset($_POST["email"]) && isset($_POST["password"])) {
 
@@ -31,12 +27,8 @@ if(isset($_POST["submit"])) {
 			$stmt->closeCursor();
 
 			if($rep) {
-				$_SESSION["profil"] = array(
-					'firstname' => $rep->firstname, 
-					'lastname' => $rep->lastname, 
-					'email' => $rep->email, 
-					'type' => $rep->type
-				);
+				$user = new User($rep->firstname, $rep->lastname, $rep->email, $rep->password, $rep->type);
+				$_SESSION["profil"] = serialize($user);
 				header("Location: index.php?page=home");
 			}
 			else $error = true;

@@ -2,30 +2,13 @@
 session_start();
 
 require_once('setup.php');
-require_once('app/models/db.class.php');
-require_once('app/models/user.class.php');
+
+function chargerClasse($className){
+    require_once 'app/models/'.$className.'.class.php';
+}
+
+spl_autoload_register('chargerClasse');
  
-// $db = DB::getInstance($dbDetails);
-
-// $reponse = $db->query('SELECT * FROM user');
-// $users = array();
-
-// while ($user = $reponse->fetch()) {
-// 	$newUser = new User($user['lastname'], $user['firstname'], $user['email'], $user['password'], $user['type']);
-// 	array_push($users, $newUser);
-// }
-
-// $reponse->closeCursor();
-
-// foreach ($users as $key => $value) {
-// 	echo $value->lastname;
-// 	echo $value->firstname;
-// 	echo $value->email;
-// 	echo $value->password;
-// 	echo $value->type;
-// 	echo '<br/>';
-// }
-
 // -------------------
 
 require_once('app/views/includes/header.php');

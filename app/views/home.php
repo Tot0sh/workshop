@@ -1,9 +1,7 @@
 <section id="section-accueil">
-	
 
 	<div class="row">
 		<div class="col-sm">
-
 			<div class="card">
 				<div class="card-header"><i class="fas fa-home mr-1"></i> Accueil</div>
 				<div class="card-body">
@@ -12,14 +10,7 @@
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
-
-
-	
-
-
 
 </section>
