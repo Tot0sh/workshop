@@ -5,23 +5,26 @@ require_once('setup.php');
 require_once('app/models/db.class.php');
 require_once('app/models/user.class.php');
  
-$db = DB::getInstance($dbDetails);
+// $db = DB::getInstance($dbDetails);
 
-$reponse = $db->query('SELECT * FROM personne');
-$users = array();
+// $reponse = $db->query('SELECT * FROM user');
+// $users = array();
 
-while ($personne = $reponse->fetch()) {
-	$user = new User($personne['nom'], $personne['prenom']);
-	array_push($users, $user);
-}
+// while ($user = $reponse->fetch()) {
+// 	$newUser = new User($user['lastname'], $user['firstname'], $user['email'], $user['password'], $user['type']);
+// 	array_push($users, $newUser);
+// }
 
-$reponse->closeCursor();
+// $reponse->closeCursor();
 
-foreach ($users as $key => $value) {
-	var_dump($value->nom);
-	var_dump($value->prenom);
-	echo '<br/>';
-}
+// foreach ($users as $key => $value) {
+// 	echo $value->lastname;
+// 	echo $value->firstname;
+// 	echo $value->email;
+// 	echo $value->password;
+// 	echo $value->type;
+// 	echo '<br/>';
+// }
 
 // -------------------
 

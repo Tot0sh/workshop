@@ -1,71 +1,47 @@
-<section id="section-login">
+<?php
 
+if(isset($_SESSION["profil"]) AND !empty($_SESSION["profil"])) header("Location: index.php?page=home");
 
-	<div class="row justify-content-center">
-		<div class="col- col-sm-10 col-md-8 col-lg-6 col-xl-5">
-			<div class="card">
-				<div class="row justify-content-center">
-					<i class="fas fa-user-circle fa-10x"></i>
-				</div>
-				<div class="card-body">
-						<form action="#">
-							<div class="input-group mb-3">
+require_once('setup.php');
+require_once('app/models/db.class.php');
+require_once('app/models/user.class.php');
 
+if(isset($_POST["submit"])) {
+	if(isset($_POST["email"]) && isset($_POST["password"])) {
 
-								<input type="text" id="groupName" class="form-control" placeholder="Username" aria-label="Recipient's username" aria-describedby="basic-addon2" id="">
-								<div class="input-group-append">
-									<span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
-								</div>
-							</div>
-							<div class="input-group mb-3">
-								<input type="password" id="password" class="form-control" placeholder="Password" aria-label="Recipient's password" aria-describedby="basic-addon2">
-								<div class="input-group-append">
-									<span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
-								</div>
-							</div>
-							<button type="button" id="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-						</form>	
-					</div>	
-				</div>
-			</div>
-		</div>
-</section>
+		$error = false;
 
+		$email = htmlspecialchars($_POST["email"]);
+		$password = htmlspecialchars($_POST["password"]);
 
+		if(empty(trim($email)) || empty(trim($password))) {
+			$error = true;
+		}
 
-<script type="text/javascript">
-	
-$(document).ready(function(){
+		if(!$error) {
+			$db = DB::getInstance($dbDetails);
+			$con = $db->getDbh();
 
-	$("#submit").click(function() {
+			$stmt = $con->prepare('SELECT * FROM user WHERE email = :email AND password = :password');
+			$stmt->bindValue(':email', $email, PDO::PARAM_STR);
+			$stmt->bindValue(':password', $password, PDO::PARAM_STR);
+			$stmt->execute();
 
-		var nameGroup = $("#groupName").val();
-		var pwdGroup = $("#password").val();
+			$rep = $stmt->fetchObject();
+			$stmt->closeCursor();
 
-		var pwd = JSON.stringify({ "name": nameGroup, "password": pwdGroup });
-
-		console.log(pwd);
-
-		$.ajax({
-			type:'post',
-			url:'../../../Workshop/app/models/ajax/getUser.php',
-			data: pwd,
-
-			sucess:function(response){
-				if(response) {
-					console.log("ok");
-				} else {
-					console.log("nop");
-				}
+			if($rep) {
+				$_SESSION["profil"] = array(
+					'firstname' => $rep->firstname, 
+					'lastname' => $rep->lastname, 
+					'email' => $rep->email, 
+					'type' => $rep->type
+				);
+				header("Location: index.php?page=home");
 			}
-		});
-
-
-	});
-});
-
-
-
-
-
-</script>
+			else $error = true;
+		}
+	}
+}
+	
+require_once(dirname(__FILE__).'/../views/'.$_GET["page"].'.php');

@@ -25,8 +25,8 @@ class DB {
         return self::$instance;
     }
 
-    public function query($sql) 
+    public function getDbh()
     {
-        return $this->_dbh->query($sql);
+        return $this->_dbh;
     }
 }

@@ -1,10 +1,17 @@
 <?php
 class User {
-    private $nom = null, $prenom = null;
+    private $firstname = null, 
+            $lastname = null,
+            $email = null,
+            $password = null,
+            $type = null;
      
-    public function __construct($nom, $prenom) {
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+    public function __construct($firstname, $lastname, $email, $password, $type) {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->email = $email;
+        $this->password = $password;
+        $this->type = $type;
     }
 
     public function __get($property)  
