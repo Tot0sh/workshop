@@ -15,9 +15,6 @@ if(isset($_POST["submit"])) {
 		}
 
 		if(!$error) {
-			$db = DB::getInstance($dbDetails);
-			$con = $db->getDbh();
-
 			$stmt = $con->prepare('SELECT * FROM user WHERE email = :email AND password = :password');
 			$stmt->bindValue(':email', $email, PDO::PARAM_STR);
 			$stmt->bindValue(':password', $password, PDO::PARAM_STR);

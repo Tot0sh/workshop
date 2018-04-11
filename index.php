@@ -8,6 +8,9 @@ function chargerClasse($className){
 }
 
 spl_autoload_register('chargerClasse');
+
+$db = DB::getInstance($dbDetails);
+$con = $db->getDbh();
  
 // -------------------
 
