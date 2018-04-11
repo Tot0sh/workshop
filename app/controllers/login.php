@@ -3,20 +3,20 @@
 if(isset($_SESSION["profil"]) AND !empty($_SESSION["profil"])) header("Location: index.php?page=home");
 
 if(isset($_POST["submit"])) {
-	if(isset($_POST["email"]) && isset($_POST["password"])) {
+	if(isset($_POST["lastname"]) && isset($_POST["password"])) {
 
 		$error = false;
 
-		$email = htmlspecialchars($_POST["email"]);
+		$lastname = htmlspecialchars($_POST["lastname"]);
 		$password = htmlspecialchars($_POST["password"]);
 
-		if(empty(trim($email)) || empty(trim($password))) {
+		if(empty(trim($lastname)) || empty(trim($password))) {
 			$error = true;
 		}
 
 		if(!$error) {
-			$stmt = $con->prepare('SELECT * FROM user WHERE email = :email AND password = :password');
-			$stmt->bindValue(':email', $email, PDO::PARAM_STR);
+			$stmt = $con->prepare('SELECT * FROM user WHERE lastname = :lastname AND password = :password');
+			$stmt->bindValue(':lastname', $lastname, PDO::PARAM_STR);
 			$stmt->bindValue(':password', $password, PDO::PARAM_STR);
 			$stmt->execute();
 
@@ -24,7 +24,7 @@ if(isset($_POST["submit"])) {
 			$stmt->closeCursor();
 
 			if($rep) {
-				$user = new User($rep->firstname, $rep->lastname, $rep->email, $rep->password, $rep->type);
+				$user = new User($rep->firstname, $rep->lastname, $rep->lastname, $rep->password, $rep->type);
 				$_SESSION["profil"] = serialize($user);
 				header("Location: index.php?page=home");
 			}
