@@ -3,10 +3,17 @@
 	<div class="row justify-content-center">
 		<div class="col- col-sm-10 col-md-8 col-lg-6 col-xl-4">
 			<div class="card">
-				<div class="row justify-content-center mt-3">
-					<i class="fas fa-user-circle fa-10x"></i>
+
+				<div class="card-header">
+					<i class="fas fa-sign-in-alt"></i> Connexion
 				</div>
+				
 				<div class="card-body">
+
+					<div class="row justify-content-center mb-4">
+						<i class="fas fa-user-circle fa-10x"></i>
+					</div>
+
 					<form action="?page=login" method="post" autocomplete="off">
 						<div class="input-group mb-3">
 							<input type="email" id="groupName" name="email" value="<?php if(isset($email)) echo $email; ?>" class="form-control" placeholder="Email" aria-describedby="basic-addon"/>
