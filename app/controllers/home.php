@@ -17,7 +17,6 @@ $statut = get_class(unserialize($_SESSION["profil"]));
 			$stmt->closeCursor();
 			break;
 
-
 		case 'Contributor' :
 
 			break;
@@ -34,23 +33,9 @@ $statut = get_class(unserialize($_SESSION["profil"]));
 
 			$stmt->closeCursor();
 			break;
-		
-
 		default:
 
 			break;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 require_once(dirname(__FILE__).'/../views/'.$_GET["page"].'.php');
