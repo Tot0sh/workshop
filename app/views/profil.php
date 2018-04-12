@@ -1,5 +1,8 @@
 <section id="section-profil">
 
+
+	<?php var_dump($_SESSION['profil']); ?>
+
 	<div class="row">
 		<div class="col-sm">
 			<div class="card">
@@ -19,24 +22,18 @@
 					</span>
 					<span class="list-group-item list-group-item-action flex-column align-items-start">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">Email</h5>
-						</div>
-						<p class="mb-1"><?= htmlentities($profil->email); ?></p>
-					</span>
-					<span class="list-group-item list-group-item-action flex-column align-items-start">
-						<div class="d-flex w-100 justify-content-between">
 							<h5 class="mb-1">Type</h5>
 						</div>
 						<p class="mb-1">
-								<?php switch (htmlentities($profil->type)) {
+								<?php switch (htmlentities($profil->id_Type_User)) {
 									case 1:
-										echo 'Responsable pédagogique';
+										echo 'Apprenant';
 										break;
 									case 2:
 										echo 'Intervenant';
 										break;
 									case 3:
-										echo 'Apprenant';
+										echo 'Responsable';
 										break;
 									default:
 										echo '???';
