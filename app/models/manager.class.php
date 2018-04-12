@@ -7,7 +7,6 @@ class Manager {
     public function __construct($firstname, $lastname, $password) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        $this->password = $password;
     }
 
     public function __get($property)  

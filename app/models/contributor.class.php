@@ -2,13 +2,11 @@
 class Contributor {
     private $firstname = null, 
             $lastname = null,
-            $password = null,
             $speciality = null;
      
-    public function __construct($firstname, $lastname, $password, $speciality) {
+    public function __construct($firstname, $lastname, $speciality) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        $this->password = $password;
         $this->speciality = $speciality;
     }
 
