@@ -1,17 +1,17 @@
 <?php
-class User {
+class Student {
     private $firstname = null, 
             $lastname = null,
-            $email = null,
-            $password = null,
-            $type = null;
+            $school = null,
+            $year = null,
+            $group = null;
      
-    public function __construct($firstname, $lastname, $email, $password, $type) {
+    public function __construct($firstname, $lastname, $school, $year, $group) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
-        $this->email = $email;
-        $this->password = $password;
-        $this->type = $type;
+        $this->school = $school;
+        $this->year = $year;
+        $this->group = $group;
     }
 
     public function __get($property)  
