@@ -58,7 +58,7 @@
 	// -------------------------------------------------------------
 
 	// Get les teams ou l'étudiant est inscrit ---------------------
-	$stmt = $con->prepare('SELECT id FROM appartenir WHERE id_User = :idUser AND id = :idProject');
+	$stmt = $con->prepare('SELECT A.id FROM appartenir A, team T WHERE A.id = T.id AND id_User = :idUser AND id_Project = :idProject');
 	$stmt->bindValue(':idUser', $currentUser->id, PDO::PARAM_STR);
 	$stmt->bindValue(':idProject', $idProject, PDO::PARAM_STR);
 	$stmt->execute();
