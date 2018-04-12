@@ -33,10 +33,9 @@ if(isset($_POST["submit"])) {
 						$response = $connec->fetchObject();
 						$connec->closeCursor();
 
-						$user = new Student($rep->firstname, $rep->lastname, $response->id_School, $response->annee, $response->groupe);
+						$user = new Student($rep->id, $rep->firstname, $rep->lastname, $response->id_School, $response->annee, $response->groupe);
 						break;
 					case 2:
-						var_dump($rep);
 						$connec = $con->prepare('SELECT * FROM contributor WHERE id = :id');
 						$connec->bindValue(':id', $rep->id, PDO::PARAM_STR);
 						$connec->execute();
@@ -54,7 +53,7 @@ if(isset($_POST["submit"])) {
 						break;
 				}
 				$_SESSION["profil"] = serialize($user);
-				//header("Location: index.php?page=home");
+				header("Location: index.php?page=home");
 			}
 			else $error = true;
 		}

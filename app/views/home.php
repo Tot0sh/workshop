@@ -55,9 +55,44 @@
 					<?php elseif($statut == 'Contributor'): ?>
 						Con
 					<?php elseif($statut == 'Student'): ?>
-						Stu
+						
+
+
+
+
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Titre</th>
+									<th scope="col">Description</th>
+									<th scope="col">Nombre de jetons autorisé</th>
+									<th scope="col">Nombre d'étudiant max</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($projects as $oneProject) 
+								{ ?>
+									<tr>
+										<td>
+											<?php echo $oneProject->title; ?>
+										</td>
+										<td class="">
+											<?php echo $oneProject->description; ?>
+										</td>
+										<td>
+											<?php echo $oneProject->nbToken; ?>
+										</td>
+										<td>
+											<?php echo $oneProject->maxNbPerson; ?>
+										</td>
+										<td>
+											<a class="btn btn-primary btn-sm" href="index.php?page=view_project&project=<?= $oneProject->id; ?>" role="button" data-delay='{"show":"1000"}' title="Voir"><i class="fas fa-eye"></i></a>
+										</td>
+									</tr><?php
+								} ?>
+							</tbody>
+						</table>
 					<?php endif; ?>
-					
 				</div>
 			</div>
 		</div>
