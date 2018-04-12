@@ -1,12 +1,12 @@
 <?php
 
-$contributors = array();
+$listContributor = array();
 
 $stmt = $con->prepare('SELECT * FROM user WHERE id_Type_User = 2');
 $stmt->execute();
 
 while ($contributor = $stmt->fetchObject()) {
-	array_push($contributors, $contributor);
+	array_push($listContributor, $contributor);
 }
 
 $stmt->closeCursor();
@@ -68,26 +68,34 @@ if(isset($_POST["submit"])) {
 	}
 	else $errors['group'] = 'Aucun choix selectionné';
 
-	// $contributors = array();
-	// foreach ($_POST['contributors'] as $contributor) {
-	// 	array_push($contributors, $contributor);
-	// }
+	if(isset($_POST["contributors"])) {
+		$contributors = $_POST["contributors"];
+	}
+	else $errors['contributors'] = 'Aucun choix selectionné';
 
-	// if(empty($errors)) {
-	// 	$stmt = $con->prepare('INSERT INTO project (title, description, nbToken, classe, annee, groupe, maxNbPerson)
-	// 	VALUES (:title, :description, :nbToken, :classe, :annee, :groupe, :maxNbPerson)');
-	// 	$stmt->bindValue(':title', $title, PDO::PARAM_STR);
-	// 	$stmt->bindValue(':description', $description, PDO::PARAM_STR);
-	// 	$stmt->bindValue(':nbToken', $token, PDO::PARAM_INT);
-	// 	$stmt->bindValue(':classe', $school, PDO::PARAM_INT);
-	// 	$stmt->bindValue(':annee', $year, PDO::PARAM_INT);
-	// 	$stmt->bindValue(':groupe', $group, PDO::PARAM_INT);
-	// 	$stmt->bindValue(':maxNbPerson', $max, PDO::PARAM_INT);
-	// 	$stmt->execute();
-	// 	$stmt->closeCursor();
+	if(empty($errors)) {
+		$stmt = $con->prepare('INSERT INTO project (title, description, nbToken, classe, annee, groupe, maxNbPerson)
+		VALUES (:title, :description, :nbToken, :classe, :annee, :groupe, :maxNbPerson)');
+		$stmt->bindValue(':title', $title, PDO::PARAM_STR);
+		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+		$stmt->bindValue(':nbToken', $token, PDO::PARAM_INT);
+		$stmt->bindValue(':classe', $school, PDO::PARAM_INT);
+		$stmt->bindValue(':annee', $year, PDO::PARAM_INT);
+		$stmt->bindValue(':groupe', $group, PDO::PARAM_INT);
+		$stmt->bindValue(':maxNbPerson', $max, PDO::PARAM_INT);
+		$stmt->execute();
+		$lastId = $stmt->lastInsertId(); 
+		$stmt->closeCursor();
 
-	// 	header("Location: index.php?page=home");
-	// }
+		// $stmt = $con->prepare('INSERT INTO inclure (id, id_Project)
+		// VALUES (:id, :id_Project)');
+		// $stmt->bindValue(':id', $lastId, PDO::PARAM_INT);
+		// $stmt->bindValue(':id_Project', $, PDO::PARAM_STR);
+		// $stmt->execute();
+		// $stmt->closeCursor();
+
+		header("Location: index.php?page=home");
+	}
 }
 
 require_once(dirname(__FILE__).'/../views/'.$_GET["page"].'.php');

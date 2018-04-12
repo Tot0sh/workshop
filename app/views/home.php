@@ -25,6 +25,7 @@
 										<th scope="col">#</th>
 										<th scope="col">Titre</th>
 										<th scope="col">Nombre jeton</th>
+										<th scope="col">Nombre place max</th>
 										<th scope="col">Action</th>
  									</tr>
 								</thead>
@@ -34,6 +35,7 @@
 											<th scope="row"><?= $value->id; ?></th>
 											<td><?= $value->title; ?></td>
 											<td><?= $value->nbToken; ?></td>
+											<td><?= $value->maxNbPerson; ?></td>
 											<td>
 												<button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Voir"><i class="fas fa-eye"></i></button>
 												<button type="button" class="btn btn-warning btn-sm" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Modifier"><i class="fas fa-pencil-alt"></i></button>
@@ -53,12 +55,8 @@
 						<?php endif; ?>
 
 					<?php elseif($statut == 'Contributor'): ?>
-						Con
+						Espace intervenant
 					<?php elseif($statut == 'Student'): ?>
-						
-
-
-
 
 						<table class="table table-striped table-hover">
 							<thead>
@@ -74,16 +72,16 @@
 								{ ?>
 									<tr>
 										<td>
-											<?php echo $oneProject->title; ?>
+											<?= $oneProject->title; ?>
 										</td>
 										<td class="">
-											<?php echo $oneProject->description; ?>
+											<?= $oneProject->description; ?>
 										</td>
 										<td>
-											<?php echo $oneProject->nbToken; ?>
+											<?= $oneProject->nbToken; ?>
 										</td>
 										<td>
-											<?php echo $oneProject->maxNbPerson; ?>
+											<?= $oneProject->maxNbPerson; ?>
 										</td>
 										<td>
 											<a class="btn btn-primary btn-sm" href="index.php?page=view_project&project=<?= $oneProject->id; ?>" role="button" data-delay='{"show":"1000"}' title="Voir"><i class="fas fa-eye"></i></a>

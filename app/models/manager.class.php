@@ -1,10 +1,9 @@
 <?php
 class Manager {
     private $firstname = null, 
-            $lastname = null,
-            $password = null;
+            $lastname = null;
      
-    public function __construct($firstname, $lastname, $password) {
+    public function __construct($firstname, $lastname) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
     }

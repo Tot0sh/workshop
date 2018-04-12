@@ -163,8 +163,8 @@
 
 								<label for="input-contributor">Intervenants</label>
 								<select multiple class="form-control <?= $flag; ?>" id="input-contributor" name="contributors[]">
-									<?php foreach ($contributors as $key => $value): ?>
-										<option value="<?= $value->id; ?>"><?= $value->lastname. " " .$value->firstname; ?></option>
+									<?php foreach ($listContributor as $key => $value): ?>
+										<option <?php if (isset($contributors) && in_array($value->id, $contributors)) echo 'selected'; ?> value="<?= $value->id; ?>"><?= $value->lastname. " " .$value->firstname; ?></option>
 									<?php endforeach; ?>
 								</select>
 								
@@ -176,8 +176,12 @@
 							</div>
 						</div>
 
-						<a class="btn btn-secondary" href="index.php?page=home" role="button">Annuler</a>
-						<button type="submit" name="submit" class="btn btn-primary float-right">Créer</button>
+						<div class="form-row mt-3">
+							<div class="col">
+								<a class="btn btn-secondary" href="index.php?page=home" role="button">Annuler</a>
+								<button type="submit" name="submit" class="btn btn-primary float-right">Créer</button>
+							</div>
+						</div>
 					</form>
 
 				</div>

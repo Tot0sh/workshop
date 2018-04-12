@@ -11,6 +11,7 @@ class DB {
 
         try {
             $this->_dbh = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->dbName, $this->dbUser, $this->dbPass);
+            $this->_dbh->exec("set names utf8");
         }
         catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
