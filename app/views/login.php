@@ -16,7 +16,7 @@
 
 					<form action="?page=login" method="post" autocomplete="off">
 						<div class="input-group mb-3">
-							<input type="lastname" id="groupName" name="lastname" value="<?php if(isset($lastname)) echo $lastname; ?>" class="form-control" placeholder="Nom" aria-describedby="basic-addon"/>
+							<input type="login" id="groupName" name="login" value="<?php if(isset($login)) echo $login; ?>" class="form-control" placeholder="Nom" aria-describedby="basic-addon"/>
 							<div class="input-group-append">
 								<span class="input-group-text" id="basic-addon"><i class="fas fa-user"></i></span>
 							</div>
