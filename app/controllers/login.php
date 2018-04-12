@@ -26,13 +26,27 @@ if(isset($_POST["submit"])) {
 			if($rep) {
 				switch ($rep->id_Type_User) {
 					case 1:
-						$user = new Student($rep->firstname, $rep->lastname, "Epsi", 3, 2);
+						$connec = $con->prepare('SELECT * FROM student WHERE id = :id');
+						$connec->bindValue(':id', $rep->id, PDO::PARAM_STR);
+						$connec->execute();
+
+						$response = $connec->fetchObject();
+						$connec->closeCursor();
+
+						$user = new Student($rep->id, $rep->firstname, $rep->lastname, $response->id_School, $response->annee, $response->groupe);
 						break;
 					case 2:
-						$user = new Contributor($rep->firstname, $rep->lastname, "superpass", "Électronique");
+						$connec = $con->prepare('SELECT * FROM contributor WHERE id = :id');
+						$connec->bindValue(':id', $rep->id, PDO::PARAM_STR);
+						$connec->execute();
+
+						$response = $connec->fetchObject();
+						$connec->closeCursor();
+
+						$user = new Contributor($rep->firstname, $rep->lastname, $response->speciality);
 						break;
 					case 3:
-						$user = new Manager($rep->firstname, $rep->lastname, "superpass");
+						$user = new Manager($rep->firstname, $rep->lastname);
 						break;
 					default:
 						echo "???";

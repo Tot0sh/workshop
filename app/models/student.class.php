@@ -1,12 +1,14 @@
 <?php
 class Student {
-    private $firstname = null, 
+    private $id = null,
+            $firstname = null, 
             $lastname = null,
             $school = null,
             $year = null,
             $group = null;
      
-    public function __construct($firstname, $lastname, $school, $year, $group) {
+    public function __construct($id, $firstname, $lastname, $school, $year, $group) {
+        $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->school = $school;
