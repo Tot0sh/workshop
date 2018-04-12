@@ -9,9 +9,7 @@
 					</div>
 
 					<?php if($statut == 'Manager' && !empty($projects)): ?>
-						<button type="button" class="btn btn-primary float-right btn-sm" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Créer un nouveau projet">
-							Créer un projet
-						</button>
+						<a class="btn btn-primary float-right btn-sm" href="index.php?page=add_project" role="button">Créer un projet</a>
 					<?php endif; ?>
 
 				</div>
