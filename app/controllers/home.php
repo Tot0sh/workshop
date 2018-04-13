@@ -19,8 +19,21 @@ $objUser = unserialize($_SESSION["profil"]);
 			}
 
 			$stmt->closeCursor();
-			break;
 
+			if(isset($_GET['project'])) {
+				$listeIntervenant = array();
+
+				$id = (int) $_GET['project'];
+				$stmt = $con->prepare('SELECT U.lastname, U.firstname, C.speciality FROM project P, inclure I, contributor C, User U WHERE P.id = I.id_Project AND I.id = C.id AND C.id = U.id AND P.id = :id');
+				$stmt->bindValue(':id', $_GET['project'], PDO::PARAM_INT);
+				$stmt->execute();
+
+				while ($intervenant = $stmt->fetchObject()) {
+					array_push($listeIntervenant, $intervenant);
+				}
+				$stmt->closeCursor();
+			}
+			break;
 		case 'Contributor' :
 
 			break;

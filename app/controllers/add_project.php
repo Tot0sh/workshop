@@ -84,15 +84,18 @@ if(isset($_POST["submit"])) {
 		$stmt->bindValue(':groupe', $group, PDO::PARAM_INT);
 		$stmt->bindValue(':maxNbPerson', $max, PDO::PARAM_INT);
 		$stmt->execute();
-		$lastId = $stmt->lastInsertId(); 
+		$lastId = $con->lastInsertId(); 
 		$stmt->closeCursor();
 
-		// $stmt = $con->prepare('INSERT INTO inclure (id, id_Project)
-		// VALUES (:id, :id_Project)');
-		// $stmt->bindValue(':id', $lastId, PDO::PARAM_INT);
-		// $stmt->bindValue(':id_Project', $, PDO::PARAM_STR);
-		// $stmt->execute();
-		// $stmt->closeCursor();
+		$stmt = $con->prepare('INSERT INTO inclure (id, id_Project)
+		VALUES (:id, :id_Project)');
+		
+		$stmt->bindValue(':id_Project', $lastId, PDO::PARAM_INT);
+		foreach($contributors as $id) {
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
+		}
+		$stmt->closeCursor();
 
 		header("Location: index.php?page=home");
 	}
