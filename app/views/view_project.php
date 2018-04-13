@@ -41,9 +41,18 @@
 								if ($userInTeam->idTeam == $oneTeam->id) { ?>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item"><?php 
-									 		echo $userInTeam->firstname;
-									 		echo " ";
-											echo $userInTeam->lastname; 
+
+											if($userInTeam->id == $currentUser->id) {
+												?><strong><?php
+ 											 		echo $userInTeam->firstname;
+											 		echo " ";
+													echo $userInTeam->lastname;
+												?></strong><?php
+											} else {
+											 		echo $userInTeam->firstname;
+											 		echo " ";
+													echo $userInTeam->lastname;
+											}
 											$flag = true;
 									  	?></li>
 									</ul><?php 

@@ -56,12 +56,12 @@
 	// Get les Users des teams ---------------------------------
 
 	foreach ($teams as $aTeam) {
-		$stmt = $con->prepare('SELECT U.firstname, U.lastname FROM appartenir A, user U, student S WHERE U.id = S.id AND S.id = A.id_User AND A.id = :idTeam');
+		$stmt = $con->prepare('SELECT U.id, U.firstname, U.lastname FROM appartenir A, user U, student S WHERE U.id = S.id AND S.id = A.id_User AND A.id = :idTeam');
 		$stmt->bindValue(':idTeam', $aTeam->id, PDO::PARAM_INT);
 		$stmt->execute();
 
 		while ($aUser = $stmt->fetchObject()) {
-			$obj = (object) array('firstname' => $aUser->firstname, 'lastname' => $aUser->lastname, 'idTeam' => $aTeam->id);
+			$obj = (object) array('id' => $aUser->id, 'firstname' => $aUser->firstname, 'lastname' => $aUser->lastname, 'idTeam' => $aTeam->id);
 			array_push($listUser, $obj);
 		}	
 		$stmt->closeCursor();
