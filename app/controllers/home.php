@@ -24,6 +24,14 @@ $objUser = unserialize($_SESSION["profil"]);
 				$listeIntervenant = array();
 
 				$id = (int) $_GET['project'];
+
+				$stmt = $con->prepare('SELECT count(*) as count FROM project WHERE id = :id');
+				$stmt->bindValue(':id', $_GET['project'], PDO::PARAM_INT);
+				$stmt->execute();
+
+				if($stmt->fetchObject()->count != 1) header("Location: index.php?page=home");
+				$stmt->closeCursor();
+
 				$stmt = $con->prepare('SELECT U.lastname, U.firstname, C.speciality FROM project P, inclure I, contributor C, User U WHERE P.id = I.id_Project AND I.id = C.id AND C.id = U.id AND P.id = :id');
 				$stmt->bindValue(':id', $_GET['project'], PDO::PARAM_INT);
 				$stmt->execute();
@@ -32,6 +40,11 @@ $objUser = unserialize($_SESSION["profil"]);
 					array_push($listeIntervenant, $intervenant);
 				}
 				$stmt->closeCursor();
+
+				$getProject = null;
+				foreach ($projects as $key => $project) {
+					if($project->id == $id) $getProject = $project;
+				}
 			}
 			break;
 		case 'Contributor' :

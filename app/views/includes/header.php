@@ -30,6 +30,27 @@
 						</ul>
 
 						<div class="btn-group mr-3" role="group">
+
+							<?php
+								$profil = unserialize($_SESSION['profil']);
+								$statut = get_class(unserialize($_SESSION["profil"]));
+								switch ($statut) {
+									case 'Manager':
+										$statut = "Responsable";
+										break;
+									case 'Contributor':
+										$statut = "Intervenant";
+										break;
+									case 'Student':
+										$statut = "Étudiant";
+										break;
+								}
+								echo "<strong>".$profil->firstname." ".$profil->lastname."&nbsp;</strong> (".$statut.")";
+							?>
+
+						</div>
+
+						<div class="btn-group mr-3" role="group">
 							<a href="?page=profil" class="btn btn-outline-primary" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Profil">
 								<i class="fas fa-user"></i>
 							</a>

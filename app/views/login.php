@@ -16,13 +16,13 @@
 
 					<form action="?page=login" method="post" autocomplete="off">
 						<div class="input-group mb-3">
-							<input type="login" id="groupName" name="login" value="<?php if(isset($login)) echo $login; ?>" class="form-control" placeholder="Nom" aria-describedby="basic-addon"/>
+							<input type="login" id="groupName" name="login" value="<?php if(isset($login)) echo $login; ?>" class="form-control" placeholder="Identifiant" aria-describedby="basic-addon"/>
 							<div class="input-group-append">
 								<span class="input-group-text" id="basic-addon"><i class="fas fa-user"></i></span>
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<input type="password" id="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2"/>
+							<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" aria-describedby="basic-addon2"/>
 							<div class="input-group-append">
 								<span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
 							</div>

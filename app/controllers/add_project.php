@@ -2,7 +2,7 @@
 
 $listContributor = array();
 
-$stmt = $con->prepare('SELECT * FROM user WHERE id_Type_User = 2');
+$stmt = $con->prepare('SELECT U.id, U.lastname, U.firstname, C.speciality FROM user U, contributor C WHERE U.id = C.id AND id_Type_User = 2');
 $stmt->execute();
 
 while ($contributor = $stmt->fetchObject()) {

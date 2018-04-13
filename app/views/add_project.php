@@ -161,10 +161,10 @@
 								else if(isset($contributors)) $flag = 'is-valid';
 								?>
 
-								<label for="input-contributor">Intervenants</label>
+								<label for="input-contributor">Liste des intervenants</label>
 								<select multiple class="form-control <?= $flag; ?>" id="input-contributor" name="contributors[]">
 									<?php foreach ($listContributor as $key => $value): ?>
-										<option <?php if (isset($contributors) && in_array($value->id, $contributors)) echo 'selected'; ?> value="<?= $value->id; ?>"><?= $value->lastname. " " .$value->firstname; ?></option>
+										<option <?php if (isset($contributors) && in_array($value->id, $contributors)) echo 'selected'; ?> value="<?= $value->id; ?>"><?= $value->lastname. " " .$value->firstname." (".$value->speciality.")"; ?></option>
 									<?php endforeach; ?>
 								</select>
 								

@@ -18,40 +18,109 @@
 
 					<?php if(isset($_GET['project'])): ?>
 
-						<?php if(isset($listeIntervenant)): ?>
-							<ul class="list-group list-group-flush">
-								<?php foreach ($listeIntervenant as $key => $value): ?>
-									<li class="list-group-item"><?= $value->lastname." ".$value->firstname." (".$value->speciality.")"; ?></li>
-								<?php endforeach; ?>
-							</ul>
-						<?php endif; ?>
+						<div class="card-body">
+							
+							<div class="form-row">
+								<div class="form-group col-8">
+									<label>Titre</label>
+									<input type="text" class="form-control" readonly value="<?= $getProject->title; ?>">
+								</div>
+								<div class="form-group col-2">
+									<label>Nombre max</label>
+									<input type="text" class="form-control" readonly value="<?= $getProject->maxNbPerson; ?>">
+								</div>
+								<div class="form-group col-2">
+									<label>Quantité jeton</label>
+									<input type="text" class="form-control" readonly value="<?= $getProject->nbToken; ?>">
+								</div>
+							</div>
 
-						<a class="btn btn-secondary" href="index.php?page=home" role="button">Annuler</a>
+							<div class="form-row">
+								<div class="form-group col-12">
+									<label>Description du projet</label>
+									<textarea class="form-control" readonly rows="5"><?= $getProject->description; ?></textarea>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col">
+									<label>École de la classe</label>
+									<input type="text" class="form-control" readonly value="<?php switch ($getProject->classe) {
+										case 1:
+											echo 'EPSI';
+											break;
+										case 2:
+											echo 'WIS';
+											break;
+										case 3:
+											echo 'OSS';
+											break;
+									} ?>">
+								</div>
+								<div class="form-group col">
+									<label>Année de la classe</label>
+									<input type="text" class="form-control" readonly value="<?php switch ($getProject->annee) {
+										case 1:
+											echo '1ère année';
+											break;
+										case 2:
+											echo '2éme année';
+											break;
+										case 3:
+											echo '3éme année';
+											break;
+										case 4:
+											echo '4éme année';
+											break;
+										case 5:
+											echo '5éme année';
+											break;
+									} ?>">
+								</div>
+								<div class="form-group col">
+									<label>Groupe de la classe</label>
+									<input type="text" class="form-control" readonly value="Groupe <?= $getProject->groupe; ?>">
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-12">
+									<label>Liste des intervenants</label>
+									<select multiple class="form-control" readonly>
+										<?php foreach ($listeIntervenant as $key => $intervenant): ?>
+											<option><?= $intervenant->lastname. " " .$intervenant->firstname." (".$intervenant->speciality.")"; ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+
+							<a class="btn btn-secondary" href="index.php?page=home" role="button">Retour</a>
+						</div>
+						
 					<?php else: ?>
 						<?php if(!empty($projects)): ?>
 
-						<table id="table-project" class="table table-hover mb-0">
+						<table id="table-project" class="table table-striped table-bordered mb-0">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Titre</th>
-									<th scope="col">Nombre jeton</th>
-									<th scope="col">Nombre place max</th>
-									<th scope="col">Nombre intervenants</th>
-									<th scope="col">École</th>
-									<th scope="col">Année</th>
-									<th scope="col">Groupe</th>
+									<th class="text-center" scope="col">#</th>
+									<th class="text-center">Titre</th>
+									<th class="text-center">Nombre jeton</th>
+									<th class="text-center">Nombre place max</th>
+									<th class="text-center">École</th>
+									<th class="text-center">Année</th>
+									<th class="text-center">Groupe</th>
+									<th class="text-center" scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php foreach ($projects as $key => $value): ?>
-									<tr href="index.php?page=home&project=<?= $value->id; ?>">
-										<th scope="row"><?= $value->id; ?></th>
+									<tr>
+										<th class="text-center" scope="row"><?= $value->id; ?></th>
 										<td><?= $value->title; ?></td>
-										<td><?= $value->nbToken; ?></td>
-										<td><?= $value->maxNbPerson; ?></td>
-										<td>0</td>
-										<td>
+										<td class="text-center"><?= $value->nbToken; ?></td>
+										<td class="text-center"><?= $value->maxNbPerson; ?></td>
+										<td class="text-center">
 											<?php switch ($value->classe) {
 												case 1:
 													echo 'EPSI';
@@ -64,8 +133,25 @@
 													break;
 											} ?>
 											</td>
-										<td><?= $value->annee; ?></td>
-										<td><?= $value->groupe; ?></td>
+										<td class="text-center"><?php switch ($value->annee) {
+										case 1:
+											echo '1ère année';
+											break;
+										case 2:
+											echo '2éme année';
+											break;
+										case 3:
+											echo '3éme année';
+											break;
+										case 4:
+											echo '4éme année';
+											break;
+										case 5:
+											echo '5éme année';
+											break;
+									} ?></td>
+										<td class="text-center">Groupe <?= $value->groupe; ?></td>
+										<td><a class="btn btn-primary btn-sm btn-block" href="index.php?page=home&project=<?= $value->id; ?>" role="button"><i class="fas fa-eye"></i></a></td>
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -75,7 +161,7 @@
 							<div class="card-body">
 								<div class="text-center">
 									<i class="far fa-list-alt fa-5x text-black-50"></i>
-									<h4 class="mt-3">Aucun projet acutellement</h4>
+									<h4 class="mt-3">Aucun projet actuellement</h4>
 									<a class="btn btn-primary mt-3" href="index.php?page=add_project" role="button">Créer un projet</a>
 								</div>
 							</div>
@@ -130,18 +216,3 @@
 	</div>
 
 </section>
-
-<script type="text/javascript">
-	
-$(document).ready(function() {
-
-    $('#table-project tr').click(function() {
-        var href = $(this).attr("href");
-        if(href) {
-            window.location = href;
-        }
-    });
-
-});
-
-</script>

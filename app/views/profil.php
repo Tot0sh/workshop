@@ -24,7 +24,7 @@
 						<p class="mb-1">
 							<?php switch (get_class($profil)) {
 								case 'Student':
-									echo 'Apprenant';
+									echo 'Étudiant';
 									break;
 								case 'Contributor':
 									echo 'Intervenant';
@@ -43,7 +43,18 @@
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class="mb-1">École</h5>
 							</div>
-							<p class="mb-1"><?= htmlentities($profil->school); ?></p>
+
+							<p class="mb-1"><?php switch ($profil->school) {
+								case 1:
+									echo 'EPSI';
+									break;
+								case 2:
+									echo 'WIS';
+									break;
+								case 3:
+									echo 'OSS';
+									break;
+							} ?></p>
 						</span>
 						<span class="list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-between">
