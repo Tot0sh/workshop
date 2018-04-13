@@ -1,10 +1,12 @@
 <?php
 class Contributor {
-    private $firstname = null, 
+    private $id = null,
+            $firstname = null,
             $lastname = null,
             $speciality = null;
      
-    public function __construct($firstname, $lastname, $speciality) {
+    public function __construct($id, $firstname, $lastname, $speciality) {
+        $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->speciality = $speciality;

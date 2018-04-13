@@ -169,14 +169,75 @@
 					<?php endif; ?>
 
 				<?php elseif($statut == 'Contributor'): ?>
+						<?php if(!empty($projects)): ?>
 
-					<div class="card-body">
-						Espace intervenant
-					</div>
+							<table id="table-project" class="table table-striped table-bordered mb-0">
+							<thead>
+								<tr>
+									<th class="text-center" scope="col">#</th>
+									<th class="text-center">Titre</th>
+									<th class="text-center">Nombre jeton</th>
+									<th class="text-center">Nombre place max</th>
+									<th class="text-center">École</th>
+									<th class="text-center">Année</th>
+									<th class="text-center">Groupe</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($projects as $key => $value): ?>
+									<tr>
+										<th class="text-center" scope="row"><?= $value->id; ?></th>
+										<td><?= $value->title; ?></td>
+										<td class="text-center"><?= $value->nbToken; ?></td>
+										<td class="text-center"><?= $value->maxNbPerson; ?></td>
+										<td class="text-center">
+											<?php switch ($value->classe) {
+												case 1:
+													echo 'EPSI';
+													break;
+												case 2:
+													echo 'WIS';
+													break;
+												case 3:
+													echo 'OSS';
+													break;
+											} ?>
+											</td>
+										<td class="text-center"><?php switch ($value->annee) {
+										case 1:
+											echo '1ère année';
+											break;
+										case 2:
+											echo '2éme année';
+											break;
+										case 3:
+											echo '3éme année';
+											break;
+										case 4:
+											echo '4éme année';
+											break;
+										case 5:
+											echo '5éme année';
+											break;
+									} ?></td>
+										<td class="text-center">Groupe <?= $value->groupe; ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+
+						<?php else: ?>
+							<div class="card-body">
+								<div class="text-center">
+									<i class="far fa-list-alt fa-5x text-black-50"></i>
+									<h4 class="mt-3">Aucun projet actuellement</h4>
+								</div>
+							</div>
+						<?php endif; ?>
 
 				<?php elseif($statut == 'Student'): ?>
 
-					<div class="card-body">
+					<?php if(!empty($projects)): ?>
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
@@ -209,7 +270,14 @@
 								} ?>
 							</tbody>
 						</table>
-					</div>
+					<?php else: ?>
+						<div class="card-body">
+							<div class="text-center">
+								<i class="far fa-list-alt fa-5x text-black-50"></i>
+								<h4 class="mt-3">Aucun projet actuellement</h4>
+							</div>
+						</div>
+					<?php endif; ?>
 				<?php endif; ?>
 			</div>
 		</div>

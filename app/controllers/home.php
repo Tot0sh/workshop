@@ -49,6 +49,17 @@ $objUser = unserialize($_SESSION["profil"]);
 			break;
 		case 'Contributor' :
 
+			$projects = array();
+
+			$stmt = $con->prepare('SELECT P.id, P.title, P.nbToken, P.classe, P.annee, P.groupe, P.maxNbPerson FROM project P, inclure I, contributor C, user U WHERE P.id = I.id_Project AND I.id = C.id AND C.id = U.id AND C.id = :id');
+			$stmt->bindValue(':id', $objUser->id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			while ($project = $stmt->fetchObject()) {
+				array_push($projects, $project);
+			}
+
+			$stmt->closeCursor();
 			break;
 
 		case 'Student':

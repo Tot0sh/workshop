@@ -43,7 +43,7 @@ if(isset($_POST["submit"])) {
 						$response = $connec->fetchObject();
 						$connec->closeCursor();
 
-						$user = new Contributor($rep->firstname, $rep->lastname, $response->speciality);
+						$user = new Contributor($rep->id, $rep->firstname, $rep->lastname, $response->speciality);
 						break;
 					case 3:
 						$user = new Manager($rep->firstname, $rep->lastname);
