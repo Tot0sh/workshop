@@ -8,7 +8,6 @@
 	$currentUser = unserialize($_SESSION["profil"]);
 
 
-
 	// Set l'user dans une team -----------------------------
 	if(isset($_GET["idTeam"])) {
 		$stmt = $con->prepare('INSERT INTO appartenir (id, id_User) VALUES (:idTeam, :idUser)');
@@ -17,6 +16,19 @@
 		$stmt->execute();
 	}
 	// -------------------------------------------------------
+
+
+	// Set une nouvelle team --------------------------------
+	if(isset($_POST["nameTeam"]) && isset($_POST["loginTeam"]) && isset($_POST["passTeam"])) {
+		$stmt = $con->prepare('INSERT INTO team (name, password, login, nbTokenUsed, id_Project) VALUES (:name, :pass, :log, 0 ,:idProject)');
+		$stmt->bindValue(':name', $_POST["nameTeam"], PDO::PARAM_STR);
+		$stmt->bindValue(':pass', $_POST["loginTeam"], PDO::PARAM_STR);
+		$stmt->bindValue(':log', $_POST["passTeam"], PDO::PARAM_STR);
+		$stmt->bindValue(':idProject', $idProject, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+	// -------------------------------------------------------
+
 
 	// Get le projet -----------------------------------------
 	$stmt = $con->prepare('SELECT * FROM project WHERE id = :id');
